@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>桐須瑛人からのメッセージ | 狭間書房</title>
+  <style>
+    body {
+      margin: 0;
+      background: #0e0e0e;
+      color: #f2f2f2;
+      font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
+      line-height: 2;
+      padding: 3em;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    h1 {
+      font-size: 1.8em;
+      text-align: center;
+      margin-bottom: 2em;
+      letter-spacing: 0.08em;
+      border-bottom: 1px solid #444;
+      padding-bottom: 0.5em;
+    }
+    .message {
+      background: #1a1a1a;
+      padding: 2em;
+      border-left: 4px solid #32a9cd;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    }
+    .message p {
+      margin: 1.2em 0;
+      text-indent: 1em;
+    }
+    .link-section {
+      margin-top: 3em;
+      text-align: center;
+    }
+    .link-section a {
+      font-size: 1.2em;
+      color: #32a9cd;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .link-section a:hover {
+      color: #66d9ff;
+    }
+    footer {
+      margin-top: 4em;
+      text-align: right;
+      color: #888;
+      font-size: 0.85em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>書き置き</h1>
+
+  <div class="message">
+      <p>これを読んでいるあなたへ。</p>
+      <p>―― あなたはきっと、湯田くんの計画に気づき、そして私の居場所にも辿り着いたのでしょう。</p>
+      <p>私は、「特別なフォーム」とやらを見つけました。</p>
+      <p>というか福井くんが見つけてくれました。さすが情報システム担当ですね。</p>
+      <p>どうか、この先へ進み、私を狭間から解放してください。</p>
+    </div>
+
+  <div class="link-section">
+      <a href="https://hazamashobo.github.io/door/">▶ フォームへ遷移</a>
+    </div>
+
+  <footer>
+      桐須 瑛人
+    </footer>
+  </div>
+</body>
+</html>
