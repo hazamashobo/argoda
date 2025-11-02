@@ -27,7 +27,6 @@
     .message {
       background: #1a1a1a;
       padding: 2em;
-      border-left: 4px solid #666;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
     .message p {
@@ -50,6 +49,7 @@
       border: 2px solid #444;
       border-radius: 4px;
       transition: transform 0.3s ease;
+      cursor: pointer;
     }
     .image-gallery img:hover {
       transform: scale(1.05);
@@ -80,9 +80,59 @@
       color: #888;
       font-size: 0.85em;
     }
+    /* モーダル */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.95);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .modal.active {
+      display: flex;
+    }
+    .modal-content {
+      max-width: 90%;
+      max-height: 80%;
+      object-fit: contain;
+      border: 3px solid #32a9cd;
+      border-radius: 8px;
+    }
+    .modal-caption {
+      color: #fff;
+      font-size: 1.2em;
+      margin-top: 20px;
+      text-align: center;
+      letter-spacing: 0.05em;
+    }
+    .close-btn {
+      position: absolute;
+      top: 30px;
+      right: 50px;
+      font-size: 50px;
+      color: #fff;
+      cursor: pointer;
+      font-weight: bold;
+      transition: color 0.3s ease;
+      z-index: 1001;
+    }
+    .close-btn:hover {
+      color: #32a9cd;
+    }
     @media (max-width: 768px) {
       .image-gallery {
         grid-template-columns: repeat(2, 1fr);
+      }
+      .close-btn {
+        top: 20px;
+        right: 30px;
+        font-size: 40px;
       }
     }
   </style>
@@ -98,12 +148,12 @@
       <p>初めまして。桐須瑛人の娘の沙良と申します。</p>
       <div class="space"></div>
     
-      <p>ある日突然父から「連絡が取れなくなったらこれを見てくれ」とPDFファイルが送られてきました。</p>
+      <p>ある日突然父から「父さんと連絡が取れなくなったらこれを見てほしい」と１つのPDFファイルが送られてきました。</p>
       <p>そう、湯田の計画書です。衝撃的な内容でしたが、私ももう社会人なので冷静に読み進めました。</p>
       <div class="space"></div>
     
       <p>フィクションにもほどがある、と思いましたが父と連絡が取れなくなっているのは事実です。</p>
-      <p>私は父を助けるために、ドアを送信するための「専用のフォーム」を探すことにしました。</p>
+      <p>私は父を助けられる可能性のある、ドアを送信するための「専用のフォーム」を探すことにしました。</p>
       <p>調査を続ける中で、ある情報を入手しました。</p>
       <div class="space"></div>
      
@@ -111,19 +161,18 @@
       <div class="space"></div>
 
       <p>私は湯田の計画書にも添付されていた『最後の晩餐』についても調べることにしました。</p>
-      <p>すると、『最後の晩餐』はあの1枚だけではなく複数の作品があることがわかりました。</p>
-      <p>ここに見つけたものを添付します。</p>
+      <p>すると『最後の晩餐』はあの1枚だけではなく複数の作品があることがわかりました。ここに見つけたものを添付します。</p>
 
       <div class="image-gallery">
-        <img src="gazou/bansan1.jpg" alt="最後の晩餐 1">
-        <img src="gazou/bansan2.jpg" alt="最後の晩餐 2">
-        <img src="gazou/bansan3.jpg" alt="最後の晩餐 3">
-        <img src="gazou/bansan4.jpg" alt="最後の晩餐 4">
-        <img src="gazou/bansan5.jpg" alt="最後の晩餐 5">
-        <img src="gazou/bansan6.jpg" alt="最後の晩餐 6">
-        <img src="gazou/bansan7.jpg" alt="最後の晩餐 7">
-        <img src="gazou/bansan8.jpg" alt="最後の晩餐 8">
-        <img src="gazou/bansan9.jpg" alt="最後の晩餐 9">
+        <img src="gazou/bansan1_thumb.jpg" alt="最後の晩餐 1" onclick="openModal('gazou/bansan1.jpg', '『最後の晩餐』レオナルド・ダ・ヴィンチ　1452-1519 ミラノ　サンタマリアデッレグラッツイェ聖堂')">
+        <img src="gazou/bansan2_thumb.jpg" alt="最後の晩餐 2" onclick="openModal('gazou/bansan2.jpg', '『最後の晩餐』作者未詳　5−6世紀 ラヴェンナサンタポリナーレ・ヌオーヴォ聖堂')">
+        <img src="gazou/bansan3_thumb.jpg" alt="最後の晩餐 3" onclick="openModal('gazou/bansan3.jpg', '『最後の晩餐』作者未詳　1130年 ツィリス　世マルチヌス教会')">
+        <img src="gazou/bansan4_thumb.jpg" alt="最後の晩餐 4" onclick="openModal('gazou/bansan4.jpg', '『最後の晩餐』ドゥッチョ　1255-1260 1315-1318  シエナ　ドゥオーモ付属美術館')">
+        <img src="gazou/bansan5_thumb.jpg" alt="最後の晩餐 5" onclick="openModal('gazou/bansan5.jpg', '『最後の晩餐』作者未詳　1200年  ヴェネチア　サン・マルコ寺院')">
+        <img src="gazou/bansan6_thumb.jpg" alt="最後の晩餐 6" onclick="openModal('gazou/bansan6.jpg', '『最後の晩餐』ピーテル・プールビュス　1523-1584　ブルージュ　グルーニング美術館')">
+        <img src="gazou/bansan7_thumb.jpg" alt="最後の晩餐 7" onclick="openModal('gazou/bansan7.jpg', '『最後の晩餐』ティントレット　1518-1594 ヴェネツィア　サン・ジョルジュ・マジョレー聖堂')">
+        <img src="gazou/bansan8_thumb.jpg" alt="最後の晩餐 8" onclick="openModal('gazou/bansan8.jpg', '『最後の晩餐』ラモン・デストレンツ　14世紀後半  バルセロナ　カタルーニア美術館')">
+        <img src="gazou/bansan9_thumb.jpg" alt="最後の晩餐 9" onclick="openModal('gazou/bansan9.jpg', '『最後の晩餐』「フォン・グローテ礼拝画」の画家　16世紀　ブリュッセル　ブリュッセル王立美術館')">
       </div>
 
       <p>あいにく私は父と違ってアートに疎く、共通点が何かわかりかねています。</p>
@@ -134,5 +183,33 @@
       <div class="signature">桐須紗良</div>
     </div>
   </div>
+
+  <!-- モーダル -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <img class="modal-content" id="modalImage">
+    <p class="modal-caption" id="modalCaption"></p>
+  </div>
+
+  <script>
+    function openModal(src, caption) {
+      document.getElementById('imageModal').classList.add('active');
+      document.getElementById('modalImage').src = src;
+      document.getElementById('modalCaption').textContent = caption || '';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      document.getElementById('imageModal').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // ESCキーでも閉じる
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    });
+  </script>
 </body>
 </html>
