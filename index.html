@@ -9,7 +9,7 @@
       background: #0e0e0e;
       color: #f2f2f2;
       font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
-      line-height: 2;
+      line-height: 1.8;
       padding: 3em;
     }
     .container {
@@ -31,8 +31,35 @@
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
     }
     .message p {
-      margin: 1.2em 0;
+      margin: 0.5em 0;
       text-indent: 1em;
+    }
+    .message .space {
+      height: 1em;
+    }
+    .image-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+      margin: 2em 0;
+    }
+    .image-gallery img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border: 2px solid #444;
+      border-radius: 4px;
+      transition: transform 0.3s ease;
+    }
+    .image-gallery img:hover {
+      transform: scale(1.05);
+      border-color: #32a9cd;
+    }
+    .signature {
+      text-align: right;
+      margin-top: 2em;
+      font-size: 1.1em;
+      color: #f2f2f2;
     }
     .link-section {
       margin-top: 3em;
@@ -53,36 +80,60 @@
       color: #888;
       font-size: 0.85em;
     }
+    @media (max-width: 768px) {
+      .image-gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>これを読んでいる方へ</h1>
 
-  <div class="message">
-    　<p>ゴルゴダの丘…。
-       この言葉なら犯人にバレずに同志の方とコンタクトが取れるのではないかと思いました。</p>
-    　<p>狭間書房の方でしょうか、それとも父が編集した本の読者の方でしょうか。</p>
-    　<p>初めまして。桐須瑛人の娘の沙良と申します。</p></br>
+    <div class="message">
+      <p>ゴルゴダの丘…。この言葉なら犯人にバレずに同志の方とコンタクトが取れるのではないかと思いました。</p>
+      <p>狭間書房の方でしょうか、それとも父が編集した本の読者の方でしょうか。</p>
+      <p>初めまして。桐須瑛人の娘の沙良と申します。</p>
+      <div class="space"></div>
     
       <p>ある日突然父から「父さんと連絡が取れなくなったらこれを見てほしい」と１つのPDFファイルが送られてきました。</p>
-      <p>そう、湯田の計画書です。衝撃的な内容でしたが、私ももう社会人なので冷静に読み進めました。</p><br>
+      <p>そう、湯田の計画書です。衝撃的な内容でしたが、私ももう社会人なので冷静に読み進めました。</p>
+      <div class="space"></div>
     
-    　<p>フィクションにもほどがある、と思いましたが父と連絡が取れなくなっているのは事実です。</p>
-    　<p>私は父を助けられる可能性のある、ドアを送信するための「専用のフォーム」を探すことにしました。</p>
-    　<p>調査を続ける中で、ある情報を入手しました。</p><br>
+      <p>フィクションにもほどがある、と思いましたが父と連絡が取れなくなっているのは事実です。</p>
+      <p>私は父を助けられる可能性のある、ドアを送信するための「専用のフォーム」を探すことにしました。</p>
+      <p>調査を続ける中で、ある情報を入手しました。</p>
+      <div class="space"></div>
      
-      <p>「晩餐の中、神の子に見られる共通点を探せ」</p> <br>   
+      <p>「晩餐の中、神の子に見られる共通点を探せ」</p>
+      <div class="space"></div>
 
-    　<p>私は湯田の計画書にも添付されていた『最後の晩餐』についても調べることにしました。</p>
-    　<p>すると『最後の晩餐』はあの1枚だけではなく複数の作品があることがわかりました。ここに見つけたものを添付します。</p>
+      <p>私は湯田の計画書にも添付されていた『最後の晩餐』についても調べることにしました。</p>
+      <p>すると『最後の晩餐』はあの1枚だけではなく複数の作品があることがわかりました。ここに見つけたものを添付します。</p>
 
-    　<p>あいにく私は父と違ってアートに疎く、共通点が何かわかりかねています。</p>
-    　<p>そして、「共通点を表す言葉」を5回押すと「専門のフォームが現れるそうです。</p>
-    　<p>もう少しで父を助けられるのに…。もしも専門のフォームを見つけたら、迷わずに父を救ってくれませんか？</p>
-    　<p>どうか、どうかよろしくお願いいたします。</p>
+      <div class="image-gallery">
+        <img src="gazou/bansan1.jpg" alt="最後の晩餐 1">
+        <img src="gazou/bansan2.jpg" alt="最後の晩餐 2">
+        <img src="gazou/bansan3.jpg" alt="最後の晩餐 3">
+        <img src="gazou/bansan4.jpg" alt="最後の晩餐 4">
+        <img src="gazou/bansan5.jpg" alt="最後の晩餐 5">
+        <img src="gazou/bansan6.jpg" alt="最後の晩餐 6">
+        <img src="gazou/bansan7.jpg" alt="最後の晩餐 7">
+        <img src="gazou/bansan8.jpg" alt="最後の晩餐 8">
+        <img src="gazou/bansan9.jpg" alt="最後の晩餐 9">
+        <img src="gazou/bansan10.jpg" alt="最後の晩餐 10">
+        <img src="gazou/bansan11.jpg" alt="最後の晩餐 11">
+        <img src="gazou/bansan12.jpg" alt="最後の晩餐 12">
+      </div>
 
+      <p>あいにく私は父と違ってアートに疎く、共通点が何かわかりかねています。</p>
+      <p>そして、「共通点を表す言葉」を5回押すと「専門のフォーム」が現れるそうです。</p>
+      <p>もう少しで父を助けられるのに…。もしも専門のフォームを見つけたら、迷わずに父を救ってくれませんか？</p>
+      <p>どうか、どうかよろしくお願いいたします。</p>
 
+      <div class="signature">桐須紗良</div>
+    </div>
   </div>
 </body>
 </html>
