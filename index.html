@@ -2,46 +2,182 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>ゴルゴダの丘</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ゴルゴダの丘 | 狭間書房</title>
   <style>
-    body {
+    html, body {
+      height: 100%;
       margin: 0;
-      background: #0e0e0e;
-      color: #f2f2f2;
+      padding: 0;
+      width: 100%;
+      overflow-x: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
+      background-color: #111;
+      color: #f5f5f5;
       font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
       line-height: 1.8;
-      padding: 3em;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
+
+    /* ヘッダー */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1em 2em;
+      background-color: #666;
+      color: #fff;
+      flex-shrink: 0;
+      gap: 2em;
+      box-sizing: border-box;
+      width: 100%;
     }
-    h1 {
+    .title-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+    .title-wrapper a {
+      text-decoration: none;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      cursor: pointer;
+    }
+    .title-wrapper a:hover h1 {
+      opacity: 0.8;
+      transition: opacity 0.3s ease;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+      letter-spacing: 0.1em;
+      line-height: 1;
+      border: none;
+      font-family: "Hiragino Mincho ProN", "MS Mincho", serif;
+      font-weight: 700;
+    }
+    .subtitle {
+      margin: 0;
+      padding: 0;
+      line-height: 1;
+      font-size: 1em;
+      text-align: center;
+      color: #fff;
+    }
+
+    /* 検索 */
+    .search {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+      flex-shrink: 0;
+      margin-left: auto;
+    }
+    .search form {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .search input {
+      padding: 4px;
+      border: 2px solid #333;
+      border-radius: 4px;
+      width: 150px;
+      background-color: #fff;
+      color: #333;
+    }
+    .search input::placeholder {
+      color: #333aa;
+    }
+    .search button {
+      padding: 4px 6px;
+      border-radius: 4px;
+      border: none;
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .search button:hover {
+      background-color: #222;
+    }
+
+    /* ナビゲーション */
+    nav {
+      text-align: center;
+      padding: 1em 0;
+      background-color: #f0f0f0;
+      flex-shrink: 0;
+      overflow-x: auto;
+      box-sizing: border-box;
+      width: 100%;
+    }
+    nav a {
+      color: #003366;
+      margin: 0 1em;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      white-space: nowrap;
+    }
+    nav a:hover {
+      color: #666;
+    }
+    nav a.active {
+      color: #666;
+      border-bottom: 2px solid #666;
+    }
+
+    /* メインコンテンツ */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      margin: 2em auto;
+      padding: 0 2em;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    main > h1 {
       font-size: 1.8em;
       text-align: center;
       margin-bottom: 2em;
       letter-spacing: 0.08em;
       border-bottom: 1px solid #444;
       padding-bottom: 0.5em;
+      color: #f5f5f5;
     }
+
     .message {
       background: #1a1a1a;
       padding: 2em;
       box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      max-width: 800px;
+      margin: 0 auto;
+      box-sizing: border-box;
     }
+
     .message p {
       margin: 0.5em 0;
       text-indent: 1em;
+      word-wrap: break-word;
     }
+
     .message .space {
       height: 1em;
     }
+
     .image-gallery {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 15px;
       margin: 2em 0;
     }
+
     .image-gallery img {
       width: 100%;
       height: 200px;
@@ -51,35 +187,19 @@
       transition: transform 0.3s ease;
       cursor: pointer;
     }
+
     .image-gallery img:hover {
       transform: scale(1.05);
       border-color: #32a9cd;
     }
+
     .signature {
       text-align: right;
       margin-top: 2em;
       font-size: 1.1em;
       color: #f2f2f2;
     }
-    .link-section {
-      margin-top: 3em;
-      text-align: center;
-    }
-    .link-section a {
-      font-size: 1.2em;
-      color: #32a9cd;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .link-section a:hover {
-      color: #66d9ff;
-    }
-    footer {
-      margin-top: 4em;
-      text-align: right;
-      color: #888;
-      font-size: 0.85em;
-    }
+
     /* モーダル */
     .modal {
       display: none;
@@ -94,9 +214,11 @@
       align-items: center;
       flex-direction: column;
     }
+
     .modal.active {
       display: flex;
     }
+
     .modal-content {
       max-width: 90%;
       max-height: 80%;
@@ -104,13 +226,16 @@
       border: 3px solid #32a9cd;
       border-radius: 8px;
     }
+
     .modal-caption {
       color: #fff;
       font-size: 1.2em;
       margin-top: 20px;
       text-align: center;
       letter-spacing: 0.05em;
+      padding: 0 1em;
     }
+
     .close-btn {
       position: absolute;
       top: 30px;
@@ -122,23 +247,211 @@
       transition: color 0.3s ease;
       z-index: 1001;
     }
+
     .close-btn:hover {
       color: #32a9cd;
     }
+
+    /* フッター */
+    footer {
+      background-color: #666;
+      color: #ffffff;
+      text-align: center;
+      padding: 1em;
+      flex-shrink: 0;
+      margin-top: auto;
+      box-sizing: border-box;
+      width: 100%;
+    }
+
+    /* レスポンシブ */
     @media (max-width: 768px) {
+      header {
+        padding: 1em;
+        justify-content: center;
+        text-align: center;
+        flex-wrap: wrap;
+        gap: 1em;
+      }
+
+      header h1 {
+        font-size: 2em;
+      }
+
+      .title-wrapper {
+        width: 100%;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .search form {
+        width: 100%;
+        display: flex;
+      }
+
+      .search input {
+        width: 100%;
+        flex: 1;
+      }
+
+      nav a {
+        margin: 0 0.5em;
+        font-size: 0.9em;
+      }
+
+      main {
+        padding: 0 1em;
+        margin: 1em auto;
+      }
+
+      main > h1 {
+        font-size: 1.5em;
+        margin-bottom: 1.5em;
+      }
+
+      .message {
+        padding: 1.5em;
+      }
+
+      .message p {
+        font-size: 0.95em;
+      }
+
       .image-gallery {
         grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
       }
+
+      .image-gallery img {
+        height: 150px;
+      }
+
+      .signature {
+        font-size: 1em;
+      }
+
       .close-btn {
         top: 20px;
         right: 30px;
         font-size: 40px;
       }
+
+      .modal-caption {
+        font-size: 1em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        flex-direction: column;
+        gap: 0.5em;
+      }
+
+      header h1 {
+        font-size: 1.5em;
+      }
+
+      .subtitle {
+        font-size: 0.9em;
+      }
+
+      .search {
+        width: 100%;
+      }
+
+      .search input {
+        width: 100%;
+        padding: 0.5em;
+      }
+
+      .search button {
+        padding: 0.5em 0.8em;
+        font-size: 0.9em;
+      }
+
+      nav a {
+        margin: 0 0.3em;
+        font-size: 0.8em;
+      }
+
+      main {
+        padding: 0 0.8em;
+        margin: 0.8em auto;
+      }
+
+      main > h1 {
+        font-size: 1.3em;
+        margin-bottom: 1.2em;
+        letter-spacing: 0.05em;
+      }
+
+      .message {
+        padding: 1.2em;
+      }
+
+      .message p {
+        font-size: 0.9em;
+        text-indent: 0.8em;
+      }
+
+      .image-gallery {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .image-gallery img {
+        height: 180px;
+      }
+
+      .signature {
+        font-size: 0.95em;
+        margin-top: 1.5em;
+      }
+
+      .close-btn {
+        top: 15px;
+        right: 20px;
+        font-size: 35px;
+      }
+
+      .modal-content {
+        max-width: 95%;
+        max-height: 70%;
+      }
+
+      .modal-caption {
+        font-size: 0.9em;
+        margin-top: 15px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
+  <header>
+    <div class="title-wrapper">
+      <a href="https://hazamashobo.github.io/main/index.html">
+        <h1>狭間書房</h1>
+        <p class="subtitle">Hazama Publishing</p>
+      </a>
+    </div>
+    <div class="search">
+      <form action="https://hazamashobo.github.io/result/" method="get">
+        <input type="text" id="searchInput" name="q" placeholder="キーワード入力">
+        <button type="submit">検索</button>
+      </form>
+    </div>
+  </header>
+
+  <nav>
+    <a href="https://hazamashobo.github.io/main/index.html">ホーム</a>
+    <a href="https://hazamashobo.github.io/company/index.html">狭間書房について</a>
+    <a href="https://hazamashobo.github.io/books/index.html">刊行物</a>
+    <a href="https://hazamashobo.github.io/contact/index.html">お問い合わせ</a>
+  </nav>
+
+  <main>
     <h1>これを読んでいる方へ</h1>
 
     <div class="message">
@@ -148,7 +461,7 @@
       <p>初めまして。桐須瑛人の娘の沙良と申します。</p>
       <div class="space"></div>
     
-      <p>ある日突然父から「父さんと連絡が取れなくなったらこれを見てほしい」と１つのPDFファイルが送られてきました。</p>
+      <p>ある日突然父から、「父さんと連絡が取れなくなったらこれを見てほしい」と１つのPDFファイルが送られてきました。</p>
       <p>そう、湯田の計画書です。衝撃的な内容でしたが、私ももう社会人なので冷静に読み進めました。</p>
       <div class="space"></div>
     
@@ -165,12 +478,12 @@
 
       <div class="image-gallery">
         <img src="gazou/bansan5_thumb.jpg" alt="最後の晩餐 5" onclick="openModal('gazou/bansan5.jpg', '《最後の晩餐》作者未詳　1200年  ヴェネチア　サン・マルコ寺院')">
-        <img src="gazou/bansan2_thumb.jpg" alt="最後の晩餐 2" onclick="openModal('gazou/bansan2.jpg', '《最後の晩餐》作者未詳　5−6世紀 ラヴェンナサンタポリナーレ・ヌオーヴォ聖堂')">
-        <img src="gazou/bansan3_thumb.jpg" alt="最後の晩餐 3" onclick="openModal('gazou/bansan3.jpg', '《最後の晩餐》作者未詳　1130年 ツィリス　世マルチヌス教会')">
+        <img src="gazou/bansan2_thumb.jpg" alt="最後の晩餐 2" onclick="openModal('gazou/bansan2.jpg', '《最後の晩餐》作者未詳　5−6世紀 ラヴェンナサンタポリナーレ＝ヌオーヴォ聖堂')">
+        <img src="gazou/bansan3_thumb.jpg" alt="最後の晩餐 3" onclick="openModal('gazou/bansan3.jpg', '《最後の晩餐》作者未詳　1130年 ツィリス　世マルティーヌス教会')">
         <img src="gazou/bansan4_thumb.jpg" alt="最後の晩餐 4" onclick="openModal('gazou/bansan4.jpg', '《最後の晩餐》ドゥッチョ　1308-1311   シエナ　ドゥオーモ付属美術館')">
-        <img src="gazou/bansan1_thumb.jpg" alt="最後の晩餐 1" onclick="openModal('gazou/bansan1.jpg', '《最後の晩餐》レオナルド・ダ・ヴィンチ　1452-1519 ミラノ　サンタマリアデッレグラッツイェ聖堂')">
+        <img src="gazou/bansan1_thumb.jpg" alt="最後の晩餐 1" onclick="openModal('gazou/bansan1.jpg', '《最後の晩餐》レオナルド・ダ・ヴィンチ　1452-1519 ミラノ　サンタマリアデッレグラッツィエ聖堂')">
         <img src="gazou/bansan6_thumb.jpg" alt="最後の晩餐 6" onclick="openModal('gazou/bansan6.jpg', '《最後の晩餐》ピーテル・プールビュス　1523-1584　ブルージュ　グルーニング美術館')">
-        <img src="gazou/bansan7_thumb.jpg" alt="最後の晩餐 7" onclick="openModal('gazou/bansan7.jpg', '《最後の晩餐》ティントレット　1518-1594 ヴェネツィア　サン・ジョルジュ・マジョレー聖堂')">
+        <img src="gazou/bansan7_thumb.jpg" alt="最後の晩餐 7" onclick="openModal('gazou/bansan7.jpg', '《最後の晩餐》ティントレット　1518-1594 ヴェネツィア　サン・ジョルジュ・マジョーレ聖堂')">
         <img src="gazou/bansan8_thumb.jpg" alt="最後の晩餐 8" onclick="openModal('gazou/bansan8.jpg', '《最後の晩餐》ラモン・デストレンツ　14世紀後半  バルセロナ　カタルーニア美術館')">
         <img src="gazou/bansan9_thumb.jpg" alt="最後の晩餐 9" onclick="openModal('gazou/bansan9.jpg', '《最後の晩餐》「フォン・グローテ礼拝画」の画家　16世紀　ブリュッセル　ブリュッセル王立美術館')">
       </div>
@@ -185,7 +498,7 @@
 
       <div class="signature">桐須紗良</div>
     </div>
-  </div>
+  </main>
 
   <!-- モーダル -->
   <div id="imageModal" class="modal" onclick="closeModal()">
@@ -193,6 +506,10 @@
     <img class="modal-content" id="modalImage">
     <p class="modal-caption" id="modalCaption"></p>
   </div>
+
+  <footer>
+    <p>© 2025 狭間書房　（29/33）</p>
+  </footer>
 
   <script>
     function openModal(src, caption) {
